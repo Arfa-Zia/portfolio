@@ -1,8 +1,19 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { ValidationError, useForm } from "@formspree/react";
 
 export default function ContactForm() {
+  const [state, handleSubmit] = useForm("xdaypqaq");
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      formRef.current?.reset();
+    }
+  }, [state.succeeded]);
+
   return (
     <section className="bg-white">
       <div className="mx-auto w-full max-w-3xl px-6 py-20 md:px-8 md:py-24">
@@ -23,7 +34,13 @@ export default function ContactForm() {
             Tell me about your app idea and I&apos;ll get back to you soon.
           </p>
 
-          <form className="mt-8 space-y-5">
+          {state.succeeded ? (
+            <div className="mt-8 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+              Thanks for reaching out. Your message has been sent successfully.
+            </div>
+          ) : null}
+
+          <form ref={formRef} onSubmit={handleSubmit} className="mt-8 space-y-5">
             <div>
               <label htmlFor="name" className="mb-2 block text-sm font-medium text-black">
                 Full Name
@@ -35,6 +52,12 @@ export default function ContactForm() {
                 placeholder="Your name"
                 className="w-full rounded-md border border-black/15 px-4 py-3 text-sm text-black outline-none transition focus:border-black"
                 required
+              />
+              <ValidationError
+                prefix="Name"
+                field="name"
+                errors={state.errors}
+                className="mt-1 block text-sm text-red-600"
               />
             </div>
 
@@ -50,6 +73,12 @@ export default function ContactForm() {
                 className="w-full rounded-md border border-black/15 px-4 py-3 text-sm text-black outline-none transition focus:border-black"
                 required
               />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+                className="mt-1 block text-sm text-red-600"
+              />
             </div>
 
             <div>
@@ -64,15 +93,27 @@ export default function ContactForm() {
                 className="w-full resize-none rounded-md border border-black/15 px-4 py-3 text-sm text-black outline-none transition focus:border-black"
                 required
               />
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+                className="mt-1 block text-sm text-red-600"
+              />
             </div>
+
+            <ValidationError
+              errors={state.errors}
+              className="text-sm text-red-600"
+            />
 
             <motion.button
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md"
+              disabled={state.submitting}
+              className="inline-flex items-center justify-center rounded-md bg-black px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Send Message
+              {state.submitting ? "Sending..." : "Send Message"}
             </motion.button>
           </form>
         </motion.div>
