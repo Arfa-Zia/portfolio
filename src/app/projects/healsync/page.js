@@ -199,7 +199,7 @@ export default function HealSyncCaseStudyPage() {
         <CaseStudySection
           title="Future Improvements"
           dark
-          content="Next iterations would include therapist availability management, richer progress analytics, push reminders, and accessibility enhancements such as voice guidance and larger touch targets. A future usability test cycle would further validate flow decisions with real users."
+          content="Next iterations would include richer progress analytics, and accessibility enhancements such as voice guidance and larger touch targets. A future usability test cycle would further validate flow decisions with real users."
         />
 
         <section className="bg-white">
