@@ -6,6 +6,10 @@ import { motion } from "framer-motion";
 import healsyncMockup from "../src/app/projects/healsync/healsync-mockup.png";
 import mindanchorMockup from "../src/app/projects/mindanchor/mindanchor-mockup.png";
 import rise30Mockup from "../src/app/projects/rise30/rise30-mockup.png";
+import booktracker from "../src/app/projects/other_projects/booktracker-mockup.png";
+import expensetracker from "../src/app/projects/other_projects/expensetracker-mockup.png";
+import pomodorotimer from "../src/app/projects/other_projects/pomodorotimer-mockup.png";
+import weatherapp from "../src/app/projects/other_projects/weatherapp-mockup.png";
 
 const featuredProjects = [
   {
@@ -55,6 +59,7 @@ const otherProjects = [
     description:
       "Track books, reading progress, and personal notes in a simple lightweight manager.",
     tech: ["SwiftUI"],
+    image: booktracker,
   },
   {
     title: "ExpenseTracker",
@@ -62,6 +67,7 @@ const otherProjects = [
     description:
       "Manage income and expenses with clear category-based breakdowns and spending visibility.",
     tech: ["SwiftUI"],
+    image: expensetracker,
   },
   {
     title: "Pomodoro Timer",
@@ -69,6 +75,7 @@ const otherProjects = [
     description:
       "A minimal focus timer that supports productive work intervals and quick session resets.",
     tech: ["SwiftUI"],
+    image: pomodorotimer,
   },
   {
     title: "Weather App",
@@ -76,6 +83,7 @@ const otherProjects = [
     description:
       "Get current conditions and forecasts through a responsive API-driven weather interface.",
     tech: ["SwiftUI"],
+    image: weatherapp,
   },
 ];
 
@@ -183,19 +191,39 @@ function FeaturedProjectCard({ project }) {
 }
 
 function OtherProjectCard({ project }) {
+  const imageAspectRatio =
+  project.image?.width && project.image?.height
+    ? `${project.image.width} / ${project.image.height}`
+    : undefined;
+
   return (
     <motion.article
       variants={itemVariants}
       whileHover={{ y: -4, scale: 1.01 }}
       className="group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm transition-shadow hover:shadow-lg"
     >
-      <div className="h-36 w-full bg-gradient-to-br from-black/[0.045] via-black/[0.02] to-transparent p-4">
-        <div className="flex h-full w-full items-center justify-center rounded-xl border border-dashed border-black/15 bg-white/70 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/45">
-          Image
-        </div>
+        <div className="w-full bg-gradient-to-br from-black/[0.04] via-black/[0.02] to-transparent p-6">
+        {project.image ? (
+          <div
+            className="relative w-full overflow-hidden rounded-2xl border border-black/10"
+            style={{ aspectRatio: imageAspectRatio || "16 / 9" }}
+          >
+            <Image
+              src={project.image}
+              alt={`${project.title} mockup`}
+              fill
+              sizes="(min-width: 1024px) 30vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="flex h-52 w-full items-center justify-center rounded-2xl border border-dashed border-black/15 bg-white/70 text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
+            Image Placeholder
+          </div>
+        )}
       </div>
 
-      <div className="space-y-4 p-5">
+      <div className="space-y-6 p-7">
         <div>
           <h3 className="text-lg font-semibold tracking-tight text-black">{project.title}</h3>
           <p className="mt-1 text-sm font-medium text-black/60">{project.subtitle}</p>
@@ -210,6 +238,7 @@ function OtherProjectCard({ project }) {
     </motion.article>
   );
 }
+
 
 export default function ProjectsSection() {
   return (
