@@ -23,7 +23,7 @@ export default function CTA() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
-            I help founders and teams design and develop high-performance mobile
+            I help founders and teams, small businesses and startups, design and develop high-performance mobile
             apps with clean UX and reliable code.
           </p>
 
