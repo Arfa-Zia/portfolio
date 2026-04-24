@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Navbar from "../../../../components/Navbar";
 import Footer from "../../../../components/Footer";
 import CTA from "../../../../components/CTA";
+import healsyncMockup from "./healsync-mockup.png";
 
 const sectionVariant = {
   hidden: { opacity: 0, y: 24 },
@@ -87,8 +89,18 @@ export default function HealSyncCaseStudyPage() {
             </p>
 
             <div className="mt-12 rounded-3xl border border-black/10 bg-gradient-to-br from-black/[0.04] via-black/[0.02] to-transparent p-6 shadow-sm md:p-8">
-              <div className="flex h-[280px] w-full items-center justify-center rounded-2xl border border-dashed border-black/15 bg-white/70 text-sm font-semibold uppercase tracking-[0.2em] text-black/45 md:h-[420px]">
-                Large Image Placeholder
+              <div
+                className="relative w-full overflow-hidden rounded-2xl border border-black/10"
+                style={{ aspectRatio: `${healsyncMockup.width} / ${healsyncMockup.height}` }}
+              >
+                <Image
+                  src={healsyncMockup}
+                  alt="HealSync app interface mockup"
+                  fill
+                  sizes="(min-width: 768px) 1200px, 100vw"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>

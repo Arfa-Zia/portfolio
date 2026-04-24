@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import healsyncMockup from "../src/app/projects/healsync/healsync-mockup.png";
+import mindanchorMockup from "../src/app/projects/mindanchor/mindanchor-mockup.png";
+import rise30Mockup from "../src/app/projects/rise30/rise30-mockup.png";
 
 const featuredProjects = [
   {
@@ -18,6 +22,7 @@ const featuredProjects = [
     ],
     tech: ["UIKit", "Firebase"],
     status: "Concept",
+    image: healsyncMockup,
   },
   {
     title: "MindAnchor",
@@ -28,6 +33,7 @@ const featuredProjects = [
     features: ["Focus sessions", "Minimal UI", "Local storage"],
     tech: ["Flutter", "Hive"],
     status: "Prototype",
+    image: mindanchorMockup,
   },
   {
     title: "Rise30",
@@ -38,6 +44,7 @@ const featuredProjects = [
     features: ["Habit tracking", "Progress visualization", "Local storage"],
     tech: ["Flutter", "Hive"],
     status: "Prototype",
+    image: rise30Mockup,
   },
 ];
 
@@ -99,16 +106,36 @@ function TechTag({ label }) {
 }
 
 function FeaturedProjectCard({ project }) {
+  const imageAspectRatio =
+    project.image?.width && project.image?.height
+      ? `${project.image.width} / ${project.image.height}`
+      : undefined;
+
   return (
     <motion.article
       variants={itemVariants}
       whileHover={{ y: -6, scale: 1.01 }}
       className="group overflow-hidden rounded-3xl border border-black/10 bg-white shadow-sm transition-shadow hover:shadow-xl"
     >
-      <div className="h-52 w-full bg-gradient-to-br from-black/[0.04] via-black/[0.02] to-transparent p-6">
-        <div className="flex h-full w-full items-center justify-center rounded-2xl border border-dashed border-black/15 bg-white/70 text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
-          Image Placeholder
-        </div>
+      <div className="w-full bg-gradient-to-br from-black/[0.04] via-black/[0.02] to-transparent p-6">
+        {project.image ? (
+          <div
+            className="relative w-full overflow-hidden rounded-2xl border border-black/10"
+            style={{ aspectRatio: imageAspectRatio || "16 / 9" }}
+          >
+            <Image
+              src={project.image}
+              alt={`${project.title} mockup`}
+              fill
+              sizes="(min-width: 1024px) 30vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="flex h-52 w-full items-center justify-center rounded-2xl border border-dashed border-black/15 bg-white/70 text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
+            Image Placeholder
+          </div>
+        )}
       </div>
 
       <div className="space-y-6 p-7">

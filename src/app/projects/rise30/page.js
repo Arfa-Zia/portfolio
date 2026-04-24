@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Navbar from "../../../../components/Navbar";
 import Footer from "../../../../components/Footer";
+import rise30Mockup from "./rise30-mockup.png";
 
 const sectionVariant = {
   hidden: { opacity: 0, y: 24 },
@@ -82,8 +84,18 @@ export default function Rise30CaseStudyPage() {
               30-Day Habit Building App
             </p>
             <div className="mt-12 rounded-3xl border border-black/10 bg-gradient-to-br from-black/[0.04] via-black/[0.02] to-transparent p-6 shadow-sm md:p-8">
-              <div className="flex h-[280px] w-full items-center justify-center rounded-2xl border border-dashed border-black/15 bg-white/70 text-sm font-semibold uppercase tracking-[0.2em] text-black/45 md:h-[420px]">
-                Large Image Placeholder
+              <div
+                className="relative w-full overflow-hidden rounded-2xl border border-black/10"
+                style={{ aspectRatio: `${rise30Mockup.width} / ${rise30Mockup.height}` }}
+              >
+                <Image
+                  src={rise30Mockup}
+                  alt="Rise30 app interface mockup"
+                  fill
+                  sizes="(min-width: 768px) 1200px, 100vw"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>
