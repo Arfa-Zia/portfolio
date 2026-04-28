@@ -37,7 +37,7 @@ const featuredProjects = [
       "A productivity-focused mobile application designed to help users reduce distractions and stay mentally anchored during work or study sessions.",
     features: ["Focus sessions", "Minimal UI", "Local storage"],
     tech: ["Flutter", "Hive"],
-    status: "Prototype",
+    status: "Deployed",
     image: mindanchorMockup,
   },
   {
