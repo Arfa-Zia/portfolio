@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, time } from "framer-motion";
 import healsyncMockup from "../src/app/projects/healsync/healsync-mockup.png";
 import mindanchorMockup from "../src/app/projects/mindanchor/mindanchor-mockup.png";
 import rise30Mockup from "../src/app/projects/rise30/rise30-mockup.png";
@@ -10,6 +10,7 @@ import booktracker from "../src/app/projects/other_projects/booktracker-mockup.p
 import expensetracker from "../src/app/projects/other_projects/expensetracker-mockup.png";
 import pomodorotimer from "../src/app/projects/other_projects/pomodorotimer-mockup.png";
 import weatherapp from "../src/app/projects/other_projects/weatherapp-mockup.png";
+import moodjournal from "../src/app/projects/other_projects/moodjournal-mockup.png";
 
 const featuredProjects = [
   {
@@ -85,6 +86,14 @@ const otherProjects = [
     tech: ["SwiftUI"],
     image: weatherapp,
   },
+  {
+    title: "Mood Journal",
+    subtitle: "Mood Tracking App",
+    description:
+      "Track your mood and emotions with a simple mood journal app. Log your mood, add personal notes, and discover patterns over time through clear insights and visuals.",
+    tech: ["SwiftUI"],
+    image: moodjournal,
+  }
 ];
 
 const containerVariants = {
